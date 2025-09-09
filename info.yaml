@@ -1,9 +1,9 @@
 # Tiny Tapeout project information
 project:
-  title:        "Project"      # Project title
+  title:        "8-bit Counter"      # Project title
   author:       "Ahmad Jamous"      # Your name
   discord:      "ahmad_j"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "hello world"      # One line description of what your project does
+  description:  "8-bit counter exercise with TT"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 
@@ -11,7 +11,7 @@ project:
   tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_example"
+  top_module:  "tt_um_8bCounter_ajamous1"
 
   # List your project's source files here.
   # Source files must be in ./src and you must list each source file separately, one per line.
@@ -23,34 +23,34 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: "i0"
-  ui[1]: "i1"
-  ui[2]: "i2"
-  ui[3]: "i3"
-  ui[4]: "i4"
-  ui[5]: "i5"
-  ui[6]: "i6"
-  ui[7]: "i7"
+  ui[0]: "clk"        # rising-edge clock
+  ui[1]: "rst"        # reset
+  ui[2]: "up"         # 1 = count up, 0 = count down
+  ui[3]: "load"       # sync load strobe: captures value from UIO bus
+  ui[4]: "oe"         # output-enable for tri-state UIO bus (1=drive count, 0=Hi-Z)
+  ui[5]: ""           # (unused)
+  ui[6]: ""           # (unused)
+  ui[7]: ""           # (unused)
 
   # Outputs
-  uo[0]: "o0"
-  uo[1]: "o1"
-  uo[2]: "o2"
-  uo[3]: "o3"
-  uo[4]: "o4"
-  uo[5]: "o5"
-  uo[6]: "o6"
-  uo[7]: "o7"
+  uo[0]: "tc"         # terminal-count pulse on wrap
+  uo[1]: "zero"       # 1 when count == 0x00
+  uo[2]: "" 
+  uo[3]: ""
+  uo[4]: ""
+  uo[5]: ""
+  uo[6]: ""
+  uo[7]: ""
 
   # Bidirectional pins
-  uio[0]: "b0"
-  uio[1]: "b1"
-  uio[2]: "b2"
-  uio[3]: "b3"
-  uio[4]: "b4"
-  uio[5]: "b5"
-  uio[6]: "b6"
-  uio[7]: "b7"
-
+  uio[0]: "count0"    # also doubles as data_in[0] when oe=0
+  uio[1]: "count1"
+  uio[2]: "count2"
+  uio[3]: "count3"
+  uio[4]: "count4"
+  uio[5]: "count5"
+  uio[6]: "count6"
+  uio[7]: "count7"
+  
 # Do not change!
 yaml_version: 6
