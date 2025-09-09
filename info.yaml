@@ -1,14 +1,14 @@
 # Tiny Tapeout project information
 project:
-  title:        "8-bit Counter"      # Project title
-  author:       "Ahmad Jamous"      # Your name
-  discord:      "ahmad_j"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "8-bit counter exercise with TT"      # One line description of what your project does
-  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  title:        "8-bit Programmable Counter"      # Project title
+  author:       "Ahmad Jamous"                    # Your name
+  discord:      "ahmad_j"                         # Your discord (optional)
+  description:  "8-bit up-counter with synchronous load and tri-state UIO bus"  # One-line description
+  language:     "Verilog"                         # HDL used
+  clock_hz:     0                                 # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
-  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+  tiles: "1x1"                                    # Valid: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
   top_module:  "tt_um_8bCounter_ajamous1"
@@ -21,20 +21,22 @@ project:
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
+# Note: clk, rst_n, and ena are dedicated harness pins and should NOT be listed here.
+
 pinout:
-  # Inputs
-  ui[0]: "up"        # rising-edge clock
-  ui[1]: "load"        # reset
-  ui[2]: "oe"         # 1 = count up, 0 = count down
+  # Inputs (controls)
+  ui[0]: "load"     # synchronous load strobe (captures UIO bus on rising clk)
+  ui[1]: "oe"       # output-enable for tri-state UIO bus: 1=drive count, 0=Hi-Z (external can drive)
+  ui[2]: ""      
   ui[3]: ""      
   ui[4]: ""       
   ui[5]: ""         
   ui[6]: ""          
   ui[7]: ""          
 
-  # Outputs
-  uo[0]: "tc"         # terminal-count pulse on wrap
-  uo[1]: "zero"       # 1 when count == 0x00
+  # Outputs 
+  uo[0]: ""
+  uo[1]: ""
   uo[2]: "" 
   uo[3]: ""
   uo[4]: ""
@@ -42,8 +44,8 @@ pinout:
   uo[6]: ""
   uo[7]: ""
 
-  # Bidirectional pins
-  uio[0]: "count0"    # also doubles as data_in[0] when oe=0
+  # Bidirectional pins (shared counter/data bus)
+  uio[0]: "count0"    # doubles as data_in[0] when oe=0
   uio[1]: "count1"
   uio[2]: "count2"
   uio[3]: "count3"
