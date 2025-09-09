@@ -23,14 +23,14 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: "clk"        # rising-edge clock
-  ui[1]: "rst"        # reset
-  ui[2]: "up"         # 1 = count up, 0 = count down
-  ui[3]: "load"       # sync load strobe: captures value from UIO bus
-  ui[4]: "oe"         # output-enable for tri-state UIO bus (1=drive count, 0=Hi-Z)
-  ui[5]: ""           # (unused)
-  ui[6]: ""           # (unused)
-  ui[7]: ""           # (unused)
+  ui[0]: "up"        # rising-edge clock
+  ui[1]: "load"        # reset
+  ui[2]: "oe"         # 1 = count up, 0 = count down
+  ui[3]: ""      
+  ui[4]: ""       
+  ui[5]: ""         
+  ui[6]: ""          
+  ui[7]: ""          
 
   # Outputs
   uo[0]: "tc"         # terminal-count pulse on wrap
