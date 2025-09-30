@@ -77,4 +77,3 @@ async def test_project(dut):
     await ClockCycles(dut.clk, 1); await Timer(1, units="ns")
 
     dut._log.info("Test completed")
-    await ClockCycles(dut.clk, 5)
