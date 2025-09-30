@@ -5,6 +5,8 @@
 
 `default_nettype none
 
+//separate file for counter and use  an instance of it 
+
 // Top must match info.yaml: top_module: tt_um_8bCounter_ajamous1
 module tt_um_8bCounter_ajamous1 (
     // User pins
@@ -40,13 +42,13 @@ module tt_um_8bCounter_ajamous1 (
   // At the rising edge of the clock, or falling edge of the reset
   always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
-      count <= 8'h00;               // known reset state
+      count <= 8'h00;               
     end else if (load && !oe) begin
-      // Program new value from external UIO bus (only when we're not driving it)
+      //take the input of the user if no output enable and load 
       count <= uio_in;              // capture external byte on UIO
     end else begin
-      // Step every clock (no separate enable by design)
-      count <= count + 8'd1;        // simple up-counter
+      //otherwise, increment up by 1 each time
+      count <= count + 8'd1;        
     end
   end
 
